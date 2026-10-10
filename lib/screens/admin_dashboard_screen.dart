@@ -853,20 +853,25 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
 
   Widget _summary(int available, int unavailable, double width) {
     final stats = [
-      ('TOTAL CUTS', '${_products.length}', Icons.inventory_2_outlined, _ink),
+      (
+        'TOTAL CUTS',
+        '${_products.length}',
+        Icons.inventory_2_outlined,
+        const Color(0xFF1647B8),
+      ),
       (
         'AVAILABLE',
         '$available',
         Icons.check_circle_outline_rounded,
-        AppColors.success,
+        const Color(0xFF1261FF),
       ),
       (
         'NEEDS RESTOCK',
         '$unavailable',
         Icons.remove_shopping_cart_outlined,
-        AppColors.danger,
+        const Color(0xFF2377D5),
       ),
-      ('CATEGORIES', '02', Icons.grid_view_rounded, AppColors.aqua),
+      ('CATEGORIES', '02', Icons.grid_view_rounded, const Color(0xFF334FC4)),
     ];
     return GridView.builder(
       shrinkWrap: true,
@@ -1070,7 +1075,6 @@ class _AdminNavItem extends StatelessWidget {
   );
 }
 
-// Premium stat card with the same surface, border and type scale as customer cards.
 class _PremiumStatCard extends StatelessWidget {
   final String label;
   final String value;
@@ -1088,14 +1092,18 @@ class _PremiumStatCard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     clipBehavior: Clip.antiAlias,
     decoration: BoxDecoration(
-      color: _AdminDashboardScreenState._paper,
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [color, Color.lerp(color, const Color(0xFF0B3FAE), .38)!],
+      ),
       borderRadius: BorderRadius.circular(24),
-      border: Border.all(color: _AdminDashboardScreenState._line),
+      border: Border.all(color: Colors.white.withOpacity(.42)),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(.035),
-          blurRadius: 18,
-          offset: const Offset(0, 8),
+          color: color.withOpacity(.2),
+          blurRadius: 20,
+          offset: const Offset(0, 9),
         ),
       ],
     ),
@@ -1109,7 +1117,7 @@ class _PremiumStatCard extends StatelessWidget {
             height: 76,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: color.withOpacity(.045),
+              color: Colors.white.withOpacity(.08),
             ),
           ),
         ),
@@ -1119,32 +1127,22 @@ class _PremiumStatCard extends StatelessWidget {
           bottom: 0,
           child: Container(
             width: 4,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [color, color.withOpacity(.35)],
-              ),
-            ),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(.55)),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(13, 12, 11, 12),
+          padding: const EdgeInsets.fromLTRB(12, 10, 10, 10),
           child: Row(
             children: [
               Container(
-                width: 38,
-                height: 38,
+                width: 36,
+                height: 36,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [color.withOpacity(.16), color.withOpacity(.07)],
-                  ),
+                  color: Colors.white.withOpacity(.18),
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: color.withOpacity(.12)),
+                  border: Border.all(color: Colors.white.withOpacity(.28)),
                 ),
-                child: Icon(icon, color: color, size: 19),
+                child: Icon(icon, color: Colors.white, size: 19),
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -1154,12 +1152,12 @@ class _PremiumStatCard extends StatelessWidget {
                   children: [
                     Text(
                       value,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 25,
                         height: 1,
                         fontWeight: FontWeight.w800,
                         letterSpacing: -.8,
-                        color: _AdminDashboardScreenState._ink,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -1167,12 +1165,12 @@ class _PremiumStatCard extends StatelessWidget {
                       label,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 8,
+                      style: TextStyle(
+                        fontSize: 8.5,
                         height: 1.15,
                         fontWeight: FontWeight.w800,
                         letterSpacing: .55,
-                        color: _AdminDashboardScreenState._sage,
+                        color: Colors.white.withOpacity(.82),
                       ),
                     ),
                   ],
@@ -1249,7 +1247,7 @@ class _AdminProductTileState extends State<_AdminProductTile>
         child: Column(
           children: [
             Expanded(
-              flex: 7,
+              flex: 6,
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(23),
@@ -1339,9 +1337,9 @@ class _AdminProductTileState extends State<_AdminProductTile>
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(11, 5, 8, 5),
+                padding: const EdgeInsets.fromLTRB(10, 3, 6, 3),
                 child: Row(
                   children: [
                     Expanded(
@@ -1354,7 +1352,8 @@ class _AdminProductTileState extends State<_AdminProductTile>
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.heading3.copyWith(
-                              fontSize: 13,
+                              fontSize: 12,
+                              height: 1.05,
                             ),
                           ),
                           const SizedBox(height: 2),
@@ -1362,7 +1361,8 @@ class _AdminProductTileState extends State<_AdminProductTile>
                             '₹${widget.product.pricePerKg.toStringAsFixed(0)} / kg',
                             maxLines: 1,
                             style: AppTextStyles.price.copyWith(
-                              fontSize: 15,
+                              fontSize: 13,
+                              height: 1.05,
                               letterSpacing: -.2,
                             ),
                           ),
@@ -1374,15 +1374,15 @@ class _AdminProductTileState extends State<_AdminProductTile>
                       tooltip: 'Edit product',
                       visualDensity: VisualDensity.compact,
                       constraints: const BoxConstraints.tightFor(
-                        width: 30,
-                        height: 30,
+                        width: 28,
+                        height: 28,
                       ),
                       padding: EdgeInsets.zero,
                       style: IconButton.styleFrom(
                         backgroundColor: AppColors.surfaceSoft,
                         foregroundColor: AppColors.primary,
                       ),
-                      icon: const Icon(Icons.edit_rounded, size: 15),
+                      icon: const Icon(Icons.edit_rounded, size: 14),
                     ),
                   ],
                 ),
