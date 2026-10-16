@@ -12,6 +12,10 @@ class AppColors {
   static const Color aqua = Color(0xFF19C6B1);
   static const Color aquaSoft = Color(0xFFE7FAF7);
 
+  // Category accents
+  static const Color chicken = Color(0xFFE87922);
+  static const Color chickenSoft = Color(0xFFFFF1E8);
+
   // Backgrounds
   static const Color background = Color(0xFFF7F9FC);
   static const Color surface = Color(0xFFFFFFFF);

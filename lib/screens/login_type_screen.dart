@@ -84,8 +84,8 @@ class _LoginTypeScreenState extends State<LoginTypeScreen>
     return PageRouteBuilder(
       transitionDuration: const Duration(milliseconds: 450),
       reverseTransitionDuration: const Duration(milliseconds: 350),
-      pageBuilder: (_, animation, __) => page,
-      transitionsBuilder: (_, animation, __, child) {
+      pageBuilder: (_, animation, _) => page,
+      transitionsBuilder: (_, animation, _, child) {
         return FadeTransition(
           opacity: animation,
           child: SlideTransition(
@@ -120,7 +120,7 @@ class _LoginTypeScreenState extends State<LoginTypeScreen>
               right: -100,
               child: _BlurCircle(
                 size: 280,
-                color: AppColors.primary.withOpacity(0.09),
+                color: AppColors.primary.withValues(alpha: 0.09),
               ),
             ),
 
@@ -129,7 +129,7 @@ class _LoginTypeScreenState extends State<LoginTypeScreen>
               left: -100,
               child: _BlurCircle(
                 size: 300,
-                color: AppColors.aqua.withOpacity(0.09),
+                color: AppColors.aqua.withValues(alpha: 0.09),
               ),
             ),
 
@@ -256,7 +256,7 @@ class _LoginTypeScreenState extends State<LoginTypeScreen>
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.04),
+                color: Colors.black.withValues(alpha: 0.04),
                 blurRadius: 18,
                 offset: const Offset(0, 7),
               ),
@@ -419,7 +419,7 @@ class _LoginOptionCardState extends State<_LoginOptionCard> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.045),
+                  color: Colors.black.withValues(alpha: 0.045),
                   blurRadius: 24,
                   offset: const Offset(0, 10),
                 ),

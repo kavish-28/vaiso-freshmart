@@ -89,7 +89,7 @@ class _UserSignupScreenState extends State<UserSignupScreen>
               right: -100,
               child: _DecorativeCircle(
                 size: 290,
-                color: AppColors.primary.withOpacity(0.08),
+                color: AppColors.primary.withValues(alpha: 0.08),
               ),
             ),
             Positioned(
@@ -97,7 +97,7 @@ class _UserSignupScreenState extends State<UserSignupScreen>
               left: -100,
               child: _DecorativeCircle(
                 size: 300,
-                color: AppColors.aqua.withOpacity(0.08),
+                color: AppColors.aqua.withValues(alpha: 0.08),
               ),
             ),
             SingleChildScrollView(

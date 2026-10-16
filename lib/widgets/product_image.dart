@@ -1,26 +1,36 @@
 // One shared widget used everywhere we show a product photo.
 // It automatically decides: local bundled photo (fast, offline) or
 // internet placeholder (temporary, until we get the real photo).
-// This means product_card.dart and product_details_screen.dart never
-// need to know or care which type of image a product has.
+//
+// width / height are optional: leave them out when the parent already gives
+// tight constraints (for example inside Positioned.fill) and the image will
+// simply fill the space.
 
 import 'package:flutter/material.dart';
 
+import '../core/theme/app_colors.dart';
+
 class ProductImage extends StatelessWidget {
   final String imageUrl;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final BoxFit fit;
+  final IconData fallbackIcon;
+  final Color fallbackColor;
+  final double fallbackIconSize;
 
   const ProductImage({
     super.key,
     required this.imageUrl,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.fit = BoxFit.cover,
+    this.fallbackIcon = Icons.image_not_supported_outlined,
+    this.fallbackColor = AppColors.textMuted,
+    this.fallbackIconSize = 28,
   });
 
-  bool get _isNetworkImage => imageUrl.startsWith("http");
+  bool get _isNetworkImage => imageUrl.startsWith('http');
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +62,7 @@ class ProductImage extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: Colors.grey.shade100,
+      color: AppColors.surfaceSoft,
       child: const Center(
         child: SizedBox(
           width: 22,
@@ -67,11 +77,13 @@ class ProductImage extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: Colors.grey.shade100,
-      child: Icon(
-        Icons.image_not_supported_outlined,
-        color: Colors.grey.shade400,
-        size: 28,
+      color: AppColors.surfaceSoft,
+      child: Center(
+        child: Icon(
+          fallbackIcon,
+          color: fallbackColor,
+          size: fallbackIconSize,
+        ),
       ),
     );
   }

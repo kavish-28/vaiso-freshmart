@@ -74,8 +74,8 @@ class _AdminLoginScreenState extends State<AdminLoginScreen>
   PageRouteBuilder _pageRoute(Widget page) {
     return PageRouteBuilder(
       transitionDuration: const Duration(milliseconds: 450),
-      pageBuilder: (_, animation, __) => page,
-      transitionsBuilder: (_, animation, __, child) => FadeTransition(
+      pageBuilder: (_, animation, _) => page,
+      transitionsBuilder: (_, animation, _, child) => FadeTransition(
         opacity: animation,
         child: SlideTransition(
           position: Tween<Offset>(
@@ -104,7 +104,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen>
               right: -100,
               child: _DecorativeCircle(
                 size: 290,
-                color: AppColors.primary.withOpacity(0.08),
+                color: AppColors.primary.withValues(alpha: 0.08),
               ),
             ),
             Positioned(
@@ -112,7 +112,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen>
               left: -100,
               child: _DecorativeCircle(
                 size: 300,
-                color: AppColors.aqua.withOpacity(0.08),
+                color: AppColors.aqua.withValues(alpha: 0.08),
               ),
             ),
             SingleChildScrollView(

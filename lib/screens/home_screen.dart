@@ -227,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.035),
+            color: Colors.black.withValues(alpha: 0.035),
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
@@ -268,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.18),
+            color: AppColors.primary.withValues(alpha: 0.18),
             blurRadius: 30,
             offset: const Offset(0, 15),
           ),
@@ -285,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen>
               height: 240,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.06),
+                color: Colors.white.withValues(alpha: 0.06),
               ),
             ),
           ),
@@ -297,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen>
               height: 210,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: AppColors.aqua.withOpacity(0.16),
+                color: AppColors.aqua.withValues(alpha: 0.16),
               ),
             ),
           ),
@@ -310,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen>
               child: Icon(
                 Icons.waves_rounded,
                 size: 118,
-                color: Colors.white.withOpacity(0.08),
+                color: Colors.white.withValues(alpha: 0.08),
               ),
             ),
           ),
@@ -329,10 +329,10 @@ class _HomeScreenState extends State<HomeScreen>
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.13),
+                    color: Colors.white.withValues(alpha: 0.13),
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.10),
+                      color: Colors.white.withValues(alpha: 0.10),
                     ),
                   ),
                   child: const Text(
@@ -364,7 +364,7 @@ class _HomeScreenState extends State<HomeScreen>
                 Text(
                   'Updated daily for your\nlocal market.',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.72),
+                    color: Colors.white.withValues(alpha: 0.72),
                     fontSize: 11.5,
                     fontWeight: FontWeight.w500,
                     height: 1.35,
@@ -483,7 +483,7 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.035),
+            color: Colors.black.withValues(alpha: 0.035),
             blurRadius: 22,
             offset: const Offset(0, 9),
           ),
@@ -654,9 +654,9 @@ class _MarketPulseCard extends StatelessWidget {
       height: 152,
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.14),
+        color: Colors.white.withValues(alpha: 0.14),
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: Colors.white.withOpacity(0.18)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -705,7 +705,7 @@ class _MarketPulseCard extends StatelessWidget {
           Text(
             'OF $totalProducts AVAILABLE',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.72),
+              color: Colors.white.withValues(alpha: 0.72),
               fontSize: 8,
               fontWeight: FontWeight.w800,
               letterSpacing: 0.55,
@@ -735,7 +735,7 @@ class _MarketPulseCard extends StatelessWidget {
         width: 9,
         height: height,
         decoration: BoxDecoration(
-          color: AppColors.aqua.withOpacity(opacity),
+          color: AppColors.aqua.withValues(alpha: opacity),
           borderRadius: BorderRadius.circular(20),
         ),
       );
@@ -802,7 +802,7 @@ class _CategoryCardState extends State<_CategoryCard> {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.04),
+                color: Colors.black.withValues(alpha: 0.04),
                 blurRadius: 20,
                 offset: const Offset(0, 9),
               ),
@@ -819,7 +819,7 @@ class _CategoryCardState extends State<_CategoryCard> {
                 child: Image.asset(
                   widget.imagePath,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) {
+                  errorBuilder: (_, _, _) {
                     return Container(
                       color: AppColors.surfaceSoft,
                       child: Icon(
@@ -846,7 +846,7 @@ class _CategoryCardState extends State<_CategoryCard> {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black.withOpacity(0.38),
+                          Colors.black.withValues(alpha: 0.38),
                         ],
                       ),
                     ),
@@ -862,7 +862,7 @@ class _CategoryCardState extends State<_CategoryCard> {
                   width: 34,
                   height: 34,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.90),
+                    color: Colors.white.withValues(alpha: 0.90),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -906,7 +906,7 @@ class _CategoryCardState extends State<_CategoryCard> {
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        color: widget.accentColor.withOpacity(0.10),
+                        color: widget.accentColor.withValues(alpha: 0.10),
                         borderRadius: BorderRadius.circular(11),
                       ),
                       child: Icon(

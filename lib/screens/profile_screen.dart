@@ -4,8 +4,18 @@ import '../core/theme/app_colors.dart';
 import '../core/theme/app_text_styles.dart';
 import 'login_type_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String _name = 'John Doe';
+  String _email = 'user@email.com';
+  String _phone = '+91 98765 43210';
+  bool _notificationsEnabled = true;
 
   void _logout(BuildContext context) {
     Navigator.pushAndRemoveUntil(
@@ -13,6 +23,109 @@ class ProfileScreen extends StatelessWidget {
       MaterialPageRoute(builder: (_) => const LoginTypeScreen()),
       (route) => false,
     );
+  }
+
+  void _showMessage(String title, String message, IconData icon) {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        margin: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(22, 22, 22, 26),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(28),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: AppColors.primarySoft,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Icon(icon, color: AppColors.primary),
+            ),
+            const SizedBox(height: 14),
+            Text(title, style: AppTextStyles.heading3),
+            const SizedBox(height: 7),
+            Text(message, textAlign: TextAlign.center, style: AppTextStyles.body),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Done'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _editProfile() {
+    final name = TextEditingController(text: _name);
+    final email = TextEditingController(text: _email);
+    final phone = TextEditingController(text: _phone);
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) => Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(sheetContext).bottom),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(22, 14, 22, 28),
+          decoration: const BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(child: Container(width: 40, height: 4, decoration: BoxDecoration(color: AppColors.border, borderRadius: BorderRadius.circular(8)))),
+                const SizedBox(height: 22),
+                const Text('Personal information', style: AppTextStyles.heading2),
+                const SizedBox(height: 5),
+                Text('Keep your account details up to date.', style: AppTextStyles.body),
+                const SizedBox(height: 20),
+                const Text('Name', style: AppTextStyles.bodyMedium),
+                const SizedBox(height: 7),
+                TextField(controller: name, textCapitalization: TextCapitalization.words),
+                const SizedBox(height: 14),
+                const Text('Email', style: AppTextStyles.bodyMedium),
+                const SizedBox(height: 7),
+                TextField(controller: email, keyboardType: TextInputType.emailAddress),
+                const SizedBox(height: 14),
+                const Text('Phone number', style: AppTextStyles.bodyMedium),
+                const SizedBox(height: 7),
+                TextField(controller: phone, keyboardType: TextInputType.phone),
+                const SizedBox(height: 22),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (name.text.trim().isEmpty || email.text.trim().isEmpty) return;
+                      setState(() {
+                        _name = name.text.trim();
+                        _email = email.text.trim();
+                        _phone = phone.text.trim();
+                      });
+                      Navigator.pop(sheetContext);
+                    },
+                    child: const Text('Save changes'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ).whenComplete(() { name.dispose(); email.dispose(); phone.dispose(); });
   }
 
   @override
@@ -115,7 +228,7 @@ class ProfileScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(27),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 22,
             offset: const Offset(0, 10),
           ),
@@ -130,9 +243,15 @@ class ProfileScreen extends StatelessWidget {
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(21),
             ),
-            child: const Center(
+            child: Center(
               child: Text(
-                'JD',
+                _name
+                    .split(' ')
+                    .where((part) => part.isNotEmpty)
+                    .take(2)
+                    .map((part) => part[0])
+                    .join()
+                    .toUpperCase(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -144,12 +263,12 @@ class ProfileScreen extends StatelessWidget {
 
           const SizedBox(width: 15),
 
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'John Doe',
+                  _name,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 19,
@@ -160,31 +279,35 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(height: 5),
 
                 Text(
-                  'user@email.com',
+                  _email,
                   style: TextStyle(color: Colors.white70, fontSize: 12),
                 ),
 
                 SizedBox(height: 2),
 
                 Text(
-                  '+91 98765 43210',
+                  _phone,
                   style: TextStyle(color: Colors.white54, fontSize: 11),
                 ),
               ],
             ),
           ),
 
-          Container(
-            width: 34,
-            height: 34,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.10),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.edit_outlined,
-              color: Colors.white,
-              size: 16,
+          InkWell(
+            onTap: _editProfile,
+            borderRadius: BorderRadius.circular(20),
+            child: Container(
+              width: 34,
+              height: 34,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.10),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.edit_outlined,
+                color: Colors.white,
+                size: 16,
+              ),
             ),
           ),
         ],
@@ -219,7 +342,7 @@ class ProfileScreen extends StatelessWidget {
           icon: Icons.person_outline_rounded,
           title: 'Personal information',
           subtitle: 'Name, email and phone',
-          onTap: () {},
+          onTap: _editProfile,
         ),
 
         _SettingsDivider(),
@@ -227,8 +350,12 @@ class ProfileScreen extends StatelessWidget {
         _SettingsTile(
           icon: Icons.notifications_none_rounded,
           title: 'Notifications',
-          subtitle: 'Manage app notifications',
-          onTap: () {},
+          subtitle: _notificationsEnabled
+              ? 'Notifications are on'
+              : 'Notifications are paused',
+          onTap: () => setState(
+            () => _notificationsEnabled = !_notificationsEnabled,
+          ),
         ),
       ],
     );
@@ -245,7 +372,11 @@ class ProfileScreen extends StatelessWidget {
           icon: Icons.settings_outlined,
           title: 'Settings',
           subtitle: 'App preferences',
-          onTap: () {},
+          onTap: () => _showMessage(
+            'App preferences',
+            'Your preference controls will appear here as the app grows.',
+            Icons.tune_rounded,
+          ),
         ),
 
         _SettingsDivider(),
@@ -254,7 +385,11 @@ class ProfileScreen extends StatelessWidget {
           icon: Icons.info_outline_rounded,
           title: 'About',
           subtitle: 'Fish & Chicken Price Viewer',
-          onTap: () {},
+          onTap: () => _showMessage(
+            'About FreshMart',
+            'A simple way to check today’s fish and chicken prices.',
+            Icons.info_outline_rounded,
+          ),
         ),
       ],
     );
@@ -277,7 +412,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.danger,
-          side: BorderSide(color: AppColors.danger.withOpacity(0.22)),
+          side: BorderSide(color: AppColors.danger.withValues(alpha: 0.22)),
           backgroundColor: AppColors.dangerSoft,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(17),

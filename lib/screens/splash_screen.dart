@@ -69,10 +69,10 @@ class _SplashScreenState extends State<SplashScreen>
       context,
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 500),
-        pageBuilder: (_, animation, __) {
+        pageBuilder: (_, animation, _) {
           return const LoginTypeScreen();
         },
-        transitionsBuilder: (_, animation, __, child) {
+        transitionsBuilder: (_, animation, _, child) {
           return FadeTransition(
             opacity: animation,
             child: child,
@@ -101,7 +101,7 @@ class _SplashScreenState extends State<SplashScreen>
             right: -90,
             child: _GlowCircle(
               size: 300,
-              color: AppColors.primary.withOpacity(0.28),
+              color: AppColors.primary.withValues(alpha: 0.28),
             ),
           ),
 
@@ -111,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen>
             left: -100,
             child: _GlowCircle(
               size: 330,
-              color: AppColors.aqua.withOpacity(0.18),
+              color: AppColors.aqua.withValues(alpha: 0.18),
             ),
           ),
 
@@ -137,7 +137,7 @@ class _SplashScreenState extends State<SplashScreen>
                           borderRadius: BorderRadius.circular(32),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.20),
+                              color: Colors.black.withValues(alpha: 0.20),
                               blurRadius: 35,
                               offset: const Offset(0, 18),
                             ),
@@ -166,7 +166,7 @@ class _SplashScreenState extends State<SplashScreen>
                       Text(
                         'Fish & Chicken',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.72),
+                          color: Colors.white.withValues(alpha: 0.72),
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                           letterSpacing: 0.4,
@@ -182,10 +182,10 @@ class _SplashScreenState extends State<SplashScreen>
                           vertical: 9,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.07),
+                          color: Colors.white.withValues(alpha: 0.07),
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.10),
+                            color: Colors.white.withValues(alpha: 0.10),
                           ),
                         ),
                         child: Row(
@@ -203,7 +203,7 @@ class _SplashScreenState extends State<SplashScreen>
                             Text(
                               'Fresh  •  Daily  •  Local',
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.78),
+                                color: Colors.white.withValues(alpha: 0.78),
                                 fontSize: 11,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: 0.8,
@@ -232,7 +232,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
                     valueColor: AlwaysStoppedAnimation(
-                      Colors.white.withOpacity(0.8),
+                      Colors.white.withValues(alpha: 0.8),
                     ),
                   ),
                 ),
@@ -242,7 +242,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Text(
                   'Checking today’s freshness...',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.45),
+                    color: Colors.white.withValues(alpha: 0.45),
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
                   ),

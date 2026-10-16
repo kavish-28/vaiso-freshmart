@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/theme/app_colors.dart';
-import 'chicken_screen.dart';
-import 'fish_screen.dart';
+import 'catalogue_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
 
@@ -31,8 +30,8 @@ class _MainNavScreenState extends State<MainNavScreen> {
         onFishTap: () => _goToTab(1),
         onChickenTap: () => _goToTab(2),
       ),
-      const FishScreen(),
-      const ChickenScreen(),
+      const CatalogueScreen(category: CatalogueCategory.fish),
+      const CatalogueScreen(category: CatalogueCategory.chicken),
       const ProfileScreen(),
     ];
 
@@ -78,14 +77,14 @@ class _ModernBottomNav extends StatelessWidget {
       child: Container(
         height: 70,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.96),
+          color: Colors.white.withValues(alpha: 0.96),
           borderRadius: BorderRadius.circular(25),
           border: Border.all(
             color: AppColors.border,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.07),
+              color: Colors.black.withValues(alpha: 0.07),
               blurRadius: 25,
               offset: const Offset(0, 8),
             ),

@@ -92,8 +92,8 @@ class _UserLoginScreenState extends State<UserLoginScreen>
   PageRouteBuilder _pageRoute(Widget page) {
     return PageRouteBuilder(
       transitionDuration: const Duration(milliseconds: 450),
-      pageBuilder: (_, animation, __) => page,
-      transitionsBuilder: (_, animation, __, child) {
+      pageBuilder: (_, animation, _) => page,
+      transitionsBuilder: (_, animation, _, child) {
         return FadeTransition(
           opacity: animation,
           child: SlideTransition(
@@ -129,7 +129,7 @@ class _UserLoginScreenState extends State<UserLoginScreen>
               right: -100,
               child: _DecorativeCircle(
                 size: 290,
-                color: AppColors.primary.withOpacity(0.08),
+                color: AppColors.primary.withValues(alpha: 0.08),
               ),
             ),
 
@@ -138,7 +138,7 @@ class _UserLoginScreenState extends State<UserLoginScreen>
               left: -100,
               child: _DecorativeCircle(
                 size: 300,
-                color: AppColors.aqua.withOpacity(0.08),
+                color: AppColors.aqua.withValues(alpha: 0.08),
               ),
             ),
 

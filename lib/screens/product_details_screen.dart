@@ -90,7 +90,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      Colors.black.withOpacity(0.58),
+                      Colors.black.withValues(alpha: 0.58),
                     ],
                   ),
                 ),
@@ -157,7 +157,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: _accentColor.withOpacity(0.09),
+                  color: _accentColor.withValues(alpha: 0.09),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Text(
@@ -292,8 +292,8 @@ class ProductDetailsScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
           color: available
-              ? AppColors.success.withOpacity(0.15)
-              : AppColors.danger.withOpacity(0.15),
+              ? AppColors.success.withValues(alpha: 0.15)
+              : AppColors.danger.withValues(alpha: 0.15),
         ),
       ),
       child: Row(
@@ -532,11 +532,11 @@ class _GlassButton extends StatelessWidget {
         width: 42,
         height: 42,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.90),
+          color: Colors.white.withValues(alpha: 0.90),
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.10),
+              color: Colors.black.withValues(alpha: 0.10),
               blurRadius: 12,
               offset: const Offset(0, 4),
             ),
@@ -633,7 +633,7 @@ class _InfoRow extends StatelessWidget {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.09),
+              color: iconColor.withValues(alpha: 0.09),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
